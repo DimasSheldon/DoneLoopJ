@@ -19,19 +19,19 @@ public class MyLoopjTask {
     private static final String TAG = "RESPONSE";
 //    private static final String BASE_URL = "http://192.168.88.9:8080/MyLoopjServer/MyLoopjServlet";
     private static final String BASE_URL = "http://103.27.207.134/umon/api/user/posttest";
-
-    private static String url;
     //    String BASE_URL = "https://www.googleapis.com/books/v1/volumes?";
     //    String BASE_URL = "http://103.27.207.134/umon/api/user/posttest/";
+
+    private String url;
     private Context context;
     private OnLoopjListener loopjListener;
-
     private AsyncHttpClient client;
+    private String jsonResponse;
 
     public MyLoopjTask(Context context, OnLoopjListener loopjListener) {
-        client = new AsyncHttpClient();
         this.context = context;
         this.loopjListener = loopjListener;
+        client = new AsyncHttpClient();
     }
 
     public void executeLoopjGET(String url) {
@@ -44,7 +44,7 @@ public class MyLoopjTask {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
 
-                String jsonResponse = response.toString();
+                jsonResponse = response.toString();
 
                 //send response to interface
                 loopjListener.getResponse(jsonResponse);
@@ -68,8 +68,10 @@ public class MyLoopjTask {
                                   JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
 
-                Log.d(TAG, "onFailure1: " + errorResponse);
-//                Toast.makeText(context, errorResponse.toString(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onFailure#1: " + errorResponse);
+                jsonResponse = errorResponse.toString();
+                loopjListener.getResponse(jsonResponse);
+//                Toast.makeText(context, (CharSequence) errorResponse, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -77,8 +79,11 @@ public class MyLoopjTask {
                                   JSONArray errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
 
-                Log.d(TAG, "onFailure2: " + errorResponse);
-//                Toast.makeText(context, errorResponse.toString(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onFailure#2: " + errorResponse);
+
+                jsonResponse = errorResponse.toString();
+                loopjListener.getResponse(jsonResponse);
+//                Toast.makeText(context, errorResponse, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -86,8 +91,11 @@ public class MyLoopjTask {
                                   Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
 
-                Log.d(TAG, "onFailure3: " + throwable);
-//                Toast.makeText(context, throwable.toString(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onFailure#3: " + throwable);
+
+                jsonResponse = throwable.toString();
+                loopjListener.getResponse(jsonResponse);
+//                Toast.makeText(context, throwable.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -102,7 +110,7 @@ public class MyLoopjTask {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
 
-                String jsonResponse = response.toString();
+                jsonResponse = response.toString();
 
                 //send response to interface
                 loopjListener.getResponse(jsonResponse);
@@ -126,8 +134,10 @@ public class MyLoopjTask {
                                   JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
 
-                Log.d(TAG, "onFailure1: " + errorResponse);
-//                Toast.makeText(context, errorResponse.toString(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onFailure#1: " + errorResponse);
+                jsonResponse = errorResponse.toString();
+                loopjListener.getResponse(jsonResponse);
+//                Toast.makeText(context, (CharSequence) errorResponse, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -135,8 +145,11 @@ public class MyLoopjTask {
                                   JSONArray errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
 
-                Log.d(TAG, "onFailure2: " + errorResponse);
-//                Toast.makeText(context, errorResponse.toString(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onFailure#2: " + errorResponse);
+
+                jsonResponse = errorResponse.toString();
+                loopjListener.getResponse(jsonResponse);
+//                Toast.makeText(context, errorResponse, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -144,8 +157,11 @@ public class MyLoopjTask {
                                   Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
 
-                Log.d(TAG, "onFailure3: " + throwable);
-//                Toast.makeText(context, throwable.toString(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onFailure#3: " + throwable);
+
+                jsonResponse = throwable.toString();
+                loopjListener.getResponse(jsonResponse);
+//                Toast.makeText(context, throwable.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
