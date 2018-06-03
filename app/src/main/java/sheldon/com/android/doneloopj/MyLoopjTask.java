@@ -6,12 +6,9 @@ import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -36,7 +33,7 @@ public class MyLoopjTask {
 
     public void executeLoopjGET(String url) {
 
-        validateURL(url);
+        checkURL(url);
 
         client.get(this.url, null, new JsonHttpResponseHandler() {
 
@@ -102,7 +99,7 @@ public class MyLoopjTask {
 
     public void executeLoopjPOST(String url) {
 
-        validateURL(url);
+        checkURL(url);
 
         client.post(this.url, null, new JsonHttpResponseHandler() {
 
@@ -170,7 +167,7 @@ public class MyLoopjTask {
         return BASE_URL;
     }
 
-    private void validateURL(String url) {
+    private void checkURL(String url) {
         if (!(url.equals(BASE_URL)) && !(url.isEmpty())) {
             this.url = url;
         } else {
