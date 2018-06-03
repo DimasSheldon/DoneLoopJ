@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements OnLoopjListener {
     TextView mResult;
 
     MyLoopjTask myLoopjTask;
+    String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +27,17 @@ public class MainActivity extends AppCompatActivity implements OnLoopjListener {
         mResult = (TextView) findViewById(R.id.results);
 
         myLoopjTask = new MyLoopjTask(this, this);
-
         mURL.setHint(myLoopjTask.getURL());
     }
 
     public void doGET(View view) {
-        myLoopjTask.executeLoopjGET();
+        url = mURL.getText().toString();
+        myLoopjTask.executeLoopjGET(url);
     }
 
     public void doPOST(View view) {
-        myLoopjTask.executeLoopjPOST();
+        url = mURL.getText().toString();
+        myLoopjTask.executeLoopjPOST(url);
     }
 
     @Override
