@@ -12,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <EditText
+        android:id="@+id/userQuery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your query"/>
+
     <Button
         android:id="@+id/btnGET"
         android:layout_width="match_parent"

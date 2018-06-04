@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements OnLoopjListener {
 
-    EditText mURL;
+    EditText mURL, mUserQuery;
     Button mButtonGET, mButtonPOST;
     TextView mResult;
 
     MyLoopjTask myLoopjTask;
-    String url;
+    String url, query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements OnLoopjListener {
         setContentView(R.layout.activity_main);
 
         mURL = (EditText) findViewById(R.id.url);
+        mUserQuery = (EditText) findViewById(R.id.userQuery);
         mButtonGET = (Button) findViewById(R.id.btnGET);
         mButtonPOST = (Button) findViewById(R.id.btnPOST);
         mResult = (TextView) findViewById(R.id.results);
@@ -32,12 +33,24 @@ public class MainActivity extends AppCompatActivity implements OnLoopjListener {
 
     public void doGET(View view) {
         url = mURL.getText().toString();
-        myLoopjTask.executeLoopjGET(url);
+        query = mUserQuery.getText().toString();
+
+        if (query.isEmpty()) {
+            myLoopjTask.executeLoopjGET(url);
+        } else {
+            myLoopjTask.executeQueryGet(url, query);
+        }
     }
 
     public void doPOST(View view) {
         url = mURL.getText().toString();
-        myLoopjTask.executeLoopjPOST(url);
+        query = mUserQuery.getText().toString();
+
+        if (query.isEmpty()) {
+            myLoopjTask.executeLoopjPOST(url);
+        } else {
+            myLoopjTask.executeQueryPost(url, query);
+        }
     }
 
     @Override
