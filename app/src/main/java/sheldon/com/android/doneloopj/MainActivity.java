@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnLoopjListener {
         if (query.isEmpty()) {
             myLoopjTask.executeLoopjGET(url);
         } else {
-            myLoopjTask.executeQueryGet(url, query);
+//            myLoopjTask.executeQueryGet(url, query);
         }
     }
 
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements OnLoopjListener {
         if (query.isEmpty()) {
             myLoopjTask.executeLoopjPOST(url);
         } else {
-            myLoopjTask.executeQueryPost(url, query);
+//            myLoopjTask.executeQueryPost(url, query);
         }
     }
 
