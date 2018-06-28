@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements OnLoopjListener {
 
-    EditText mURL, mUserQuery;
+    EditText mURL, mUsername, mPassword;
     Button mButtonGET, mButtonPOST;
     TextView mResult;
 
     MyLoopjTask myLoopjTask;
-    String url, query;
+    String url, username, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity implements OnLoopjListener {
         setContentView(R.layout.activity_main);
 
         mURL = (EditText) findViewById(R.id.url);
-        mUserQuery = (EditText) findViewById(R.id.userQuery);
+        mUsername = (EditText) findViewById(R.id.username);
+        mPassword = (EditText) findViewById(R.id.password);
         mButtonGET = (Button) findViewById(R.id.btnGET);
         mButtonPOST = (Button) findViewById(R.id.btnPOST);
         mResult = (TextView) findViewById(R.id.results);
@@ -33,23 +34,25 @@ public class MainActivity extends AppCompatActivity implements OnLoopjListener {
 
     public void doGET(View view) {
         url = mURL.getText().toString();
-        query = mUserQuery.getText().toString();
+        username = mUsername.getText().toString();
+        password = mPassword.getText().toString();
 
-        if (query.isEmpty()) {
+        if (username.isEmpty() && password.isEmpty()) {
             myLoopjTask.executeLoopjGET(url);
         } else {
-//            myLoopjTask.executeQueryGet(url, query);
+            myLoopjTask.executeLoopjPOST(url, username, password);
         }
     }
 
     public void doPOST(View view) {
         url = mURL.getText().toString();
-        query = mUserQuery.getText().toString();
+        username = mUsername.getText().toString();
+        password = mPassword.getText().toString();
 
-        if (query.isEmpty()) {
+        if (username.isEmpty() && password.isEmpty()) {
             myLoopjTask.executeLoopjPOST(url);
         } else {
-//            myLoopjTask.executeQueryPost(url, query);
+            myLoopjTask.executeLoopjPOST(url, username, password);
         }
     }
 
